@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 48" width="284" height="48" role="img" aria-labelledby="t">
+  <!-- PLACEHOLDER LOGO. Replace this file with the final logo (keep the name assets/logo.svg).
+       It is shown on dark backgrounds (header and footer), so the final file should be the light/reversed version. -->
+  <title id="t">Concorde sports</title>
+  <defs>
+    <clipPath id="ball"><circle cx="24" cy="24" r="21"/></clipPath>
+  </defs>
+  <circle cx="24" cy="24" r="21" fill="#D4F21C"/>
+  <g clip-path="url(#ball)" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round">
+    <path d="M9 6 C19 15 19 33 9 42"/>
+    <path d="M39 6 C29 15 29 33 39 42"/>
+  </g>
+  <text x="56" y="34" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="30" fill="#FFFFFF" textLength="168" lengthAdjust="spacingAndGlyphs">Concorde</text>
+  <text x="230" y="34" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="14" fill="#D4F21C" textLength="48" lengthAdjust="spacingAndGlyphs">sports</text>
+</svg>

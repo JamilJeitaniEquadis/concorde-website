@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Concorde sports</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0F1B33">
+  <script>
+    /* GitHub Pages serves this page for any missing URL, at any depth.
+       Set a <base> so relative links (assets/, index.html) still resolve to the site root.
+       Project sites (user.github.io/repo-name/) use "/repo-name/"; custom domains use "/". */
+    (function () {
+      if (location.protocol === "file:") return;
+      var base = "/";
+      var parts = location.pathname.split("/");
+      if (/\.github\.io$/i.test(location.hostname) && parts.length > 2 && parts[1]) base = "/" + parts[1] + "/";
+      document.write('<base href="' + base + '">');
+    })();
+    document.documentElement.classList.add("js");
+  </script>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700..900&family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Concorde sports home">
+        <img src="assets/logo.svg" alt="Concorde sports" width="284" height="48">
+      </a>
+    </div>
+  </header>
+
+  <main id="main" class="notfound on-dark">
+    <div class="container">
+      <p class="display big" aria-hidden="true">Out!</p>
+      <h1 class="display h2">That one landed out of the court.</h1>
+      <p>The page you're looking for doesn't exist or has moved. Let's get you back in the game.</p>
+      <div class="btn-row">
+        <a class="btn btn--ball" href="index.html">Back to home</a>
+        <a class="btn btn--ghost" href="https://wa.me/96178806042" target="_blank" rel="noopener">Message us on WhatsApp</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="padding-top:28px">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0">
+        <span>© 2026 Concorde sports</span>
+        <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="refund.html">Payments &amp; Refunds</a></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
