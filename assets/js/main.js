@@ -4,10 +4,29 @@
 
   var doc = document.documentElement;
 
-  // Always open at the top (first section), unless the link points to a section (#pricing…).
+  // Always open at the top (first section). A section link (#clubs…) is followed only when it comes
+  // from one of our own pages (e.g. Privacy -> Clubs); a shared or pasted link with #clubs opens at the top.
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  if (!location.hash) window.scrollTo(0, 0);
+  var fromUs = document.referrer && document.referrer.indexOf(location.origin) === 0;
+  if (location.hash && !fromUs) {
+    history.replaceState(null, "", location.pathname + location.search);
+    window.scrollTo(0, 0);
+    window.addEventListener("load", function () { window.scrollTo(0, 0); });
+  } else if (!location.hash) {
+    window.scrollTo(0, 0);
+  }
   doc.classList.add("js");
+
+  // In-page links scroll smoothly without adding #section to the address, so a copied link stays clean.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   // ----- Mobile menu -----
   var toggle = document.querySelector(".nav-toggle");
