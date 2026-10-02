@@ -643,3 +643,14 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
   .float-chip--b { animation-delay: -3s; }
   @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 }
+
+/* ---------- Pricing: four audiences, one "free until launch" message ---------- */
+@media (min-width: 640px) { .plans--4 { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+@media (min-width: 1100px) { .plans--4 { grid-template-columns: repeat(4, 1fr); } }
+.plans--4 .plan { display: flex; flex-direction: column; }
+.plans--4 .plan ul { flex: 1; }
+.plan-ball { width: 30px; height: 30px; }
+.ic-badge { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--court-soft); color: var(--court); }
+.ic-badge svg { width: 18px; height: 18px; }
+.footer-bottom a { color: var(--ball); font-weight: 700; text-decoration: none; }
+.footer-bottom a:hover { text-decoration: underline; }
