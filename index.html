@@ -59,6 +59,7 @@
     <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 20h16"/><path d="M7 16v-4M12 16V7M17 16v-6"/></g></symbol>
     <symbol id="i-note" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 15h6M9 7h3"/></g></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></g></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9L12 2.8Z"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
     <!-- Sport balls -->
     <symbol id="ball-tennis" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#D4F21C"/><g clip-path="url(#ballclip)" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4.5 3c4.5 4 4.5 14 0 18M19.5 3c-4.5 4-4.5 14 0 18"/></g></symbol>
@@ -72,7 +73,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Concorde sports home">
-        <img src="assets/logo.svg" alt="Concorde sports" width="284" height="48">
+        <span class="logo"><img src="assets/logo-mark.svg" alt="" width="52" height="40"><span class="logo-word">Concorde<small>sports</small></span></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <svg class="icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
@@ -104,90 +105,120 @@
         </g>
       </svg>
 
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow reveal">Launching in Lebanon · Tennis &amp; padel</p>
-          <h1 id="hero-title" class="display reveal reveal-d1">Find your game. <span class="accent">Play together.</span></h1>
-          <p class="lead reveal reveal-d2">Concorde sports finds you players at your level, open games to join and courts at local clubs. One app for players, parents, coaches and clubs. Made in Lebanon.</p>
-          <div class="btn-row reveal reveal-d3">
-            <a class="btn btn--ball" href="https://wa.me/96178806042?text=Hi%20Concorde!%20I%27d%20like%20early%20access." target="_blank" rel="noopener">
-              <svg aria-hidden="true"><use href="#i-chat"/></svg>
-              Get early access
-            </a>
-            <a class="btn btn--ghost" href="#clubs">For clubs</a>
-          </div>
-          <div class="store-row reveal reveal-d3" aria-label="Mobile apps">
-            <span class="store-btn" aria-disabled="true">
-              <svg aria-hidden="true"><use href="#i-phone"/></svg>
-              <span>App Store <small>coming soon</small></span>
-            </span>
-            <span class="store-btn" aria-disabled="true">
-              <svg aria-hidden="true"><use href="#i-phone"/></svg>
-              <span>Google Play <small>coming soon</small></span>
-            </span>
-          </div>
-          <p class="hero-note reveal reveal-d3">iPhone and Android apps are coming soon. Message us on WhatsApp to get in early.</p>
-        </div>
+      <div class="container">
+        <div class="hero-slides" id="hero-slides" aria-roledescription="carousel" aria-label="What Concorde does">
 
-        <!-- Phone mockup (decorative, pure HTML/CSS) -->
-        <div class="phone-wrap reveal reveal-d2" aria-hidden="true">
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="phone-notch"></div>
-              <div class="app-top">
-                <div class="app-top-row">
-                  <div>
-                    <p class="app-hello">Saturday morning?</p>
-                    <p class="app-title">Let's play</p>
+          <!-- Slide 1: find players (the Play swipe page) -->
+          <div class="hero-slide hero-inner is-active" id="slide-play" role="group" aria-roledescription="slide" aria-label="1 of 2: Find players">
+            <div class="hero-copy">
+              <p class="eyebrow">Launching in Lebanon · Tennis &amp; padel</p>
+              <h1 id="hero-title" class="display">Find your game. <span class="accent">Play together.</span></h1>
+              <p class="lead">Swipe through players at your level near you. When you both want to play, the chat opens. Join open games, request courts at local clubs. Made in Lebanon.</p>
+              <div class="btn-row">
+                <a class="btn btn--ball" href="https://wa.me/96178806042?text=Hi%20Concorde!%20I%27d%20like%20early%20access." target="_blank" rel="noopener">
+                  <svg aria-hidden="true"><use href="#i-chat"/></svg>
+                  Get early access
+                </a>
+                <a class="btn btn--ghost" href="#clubs">For clubs</a>
+              </div>
+              <div class="store-row" aria-label="Mobile apps">
+                <span class="store-btn" aria-disabled="true"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>App Store <small>coming soon</small></span></span>
+                <span class="store-btn" aria-disabled="true"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>Google Play <small>coming soon</small></span></span>
+              </div>
+            </div>
+
+            <div class="phone-wrap" aria-hidden="true">
+              <div class="phone">
+                <div class="phone-screen swipe-screen">
+                  <div class="phone-notch"></div>
+                  <div class="swipe-card">
+                    <svg class="court-lines" viewBox="0 0 360 600" fill="none" stroke="#fff" stroke-width="4">
+                      <rect x="20" y="20" width="320" height="560"/><path d="M60 20v560M300 20v560M60 300h240M180 140v320M60 140h240M60 460h240"/>
+                    </svg>
+                    <div class="swipe-initial">J</div>
+                    <div class="swipe-info">
+                      <span class="swipe-match">92% match</span>
+                      <p class="swipe-name">Jimmy <span>29</span></p>
+                      <p class="swipe-meta">Level 3.5 · Tennis · 2 km away · Achrafieh</p>
+                      <div class="swipe-tags"><span>Sat mornings</span><span>Weekday evenings</span></div>
+                    </div>
                   </div>
-                  <svg class="app-ball"><use href="#ball-tennis"/></svg>
-                </div>
-                <div class="app-chips">
-                  <span class="app-chip is-active">Tennis</span>
-                  <span class="app-chip">Padel</span>
-                  <span class="app-chip">Basketball · soon</span>
+                  <div class="swipe-top">
+                    <span class="glass"><svg><use href="#ball-tennis"/></svg>Tennis</span>
+                    <span class="glass">Near me</span>
+                  </div>
+                  <div class="swipe-actions">
+                    <span class="swipe-btn"><svg><use href="#i-close"/></svg></span>
+                    <span class="swipe-btn swipe-btn--main"><svg><use href="#ball-tennis"/></svg></span>
+                    <span class="swipe-btn swipe-btn--star"><svg><use href="#i-star"/></svg></span>
+                  </div>
+                  <div class="swipe-tabbar"><span></span><span class="is-active"></span><span></span><span></span><span></span></div>
                 </div>
               </div>
-              <div class="app-body">
-                <div class="app-card">
-                  <div class="app-card-head">
-                    <span class="app-label">Open game</span>
-                    <span class="app-spot">1 spot left</span>
-                  </div>
-                  <p class="app-game">Doubles · Sat 6:00 pm</p>
-                  <p class="app-meta">Level 3–4 · Court 2</p>
-                  <span class="app-btn">Let's play</span>
-                </div>
-                <div class="app-card">
-                  <div class="app-card-head">
-                    <span class="app-label">Players at your level</span>
-                  </div>
-                  <div class="app-players">
-                    <span class="avatar" style="background:#1565FF">RK</span>
-                    <span class="avatar" style="background:#0F1B33">NS</span>
-                    <span class="avatar" style="background:#12B76A">MH</span>
-                    <span class="app-level">Level 3.5</span>
-                  </div>
-                </div>
-                <div class="app-card">
-                  <div class="app-card-head">
-                    <span class="app-label">Ladder</span>
-                    <span class="app-label" style="color:#12B76A">▲ 2</span>
-                  </div>
-                  <p class="app-game" style="margin:0">You moved up</p>
-                </div>
+              <div class="float-chip float-chip--a">
+                <span class="dot" style="background:#12B76A;color:#fff"><svg><use href="#i-check"/></svg></span>
+                <span>It's a match! <small>You and Jimmy want to play</small></span>
               </div>
-              <div class="app-tabbar"><span class="is-active"></span><span></span><span></span><span></span></div>
+              <div class="float-chip float-chip--b">
+                <span class="dot" style="background:#E7F0FF;color:#1565FF"><svg><use href="#i-msg"/></svg></span>
+                <span>Saturday 9:00? <small>Chat is open</small></span>
+              </div>
             </div>
           </div>
-          <div class="float-chip float-chip--a">
-            <span class="dot" style="background:#12B76A;color:#fff"><svg><use href="#i-check"/></svg></span>
-            <span>Court request accepted <small>Sat · 6:00 pm</small></span>
+
+          <!-- Slide 2: ladders and results between friends -->
+          <div class="hero-slide hero-inner" id="slide-ladder" role="group" aria-roledescription="slide" aria-label="2 of 2: Ladders and scores" inert>
+            <div class="hero-copy">
+              <p class="eyebrow">Ladders · Friends · Bragging rights</p>
+              <p class="display hero-h1">Settle it on court. <span class="accent">No one forgets the score.</span></p>
+              <p class="lead">Challenge your friends, report the result, and the ladder keeps count. Both players confirm every score, so the rankings are fair and the debate is over.</p>
+              <div class="btn-row">
+                <a class="btn btn--ball" href="https://wa.me/96178806042?text=Hi%20Concorde!%20I%27d%20like%20early%20access." target="_blank" rel="noopener">
+                  <svg aria-hidden="true"><use href="#i-chat"/></svg>
+                  Get early access
+                </a>
+                <a class="btn btn--ghost" href="#players">How it works</a>
+              </div>
+            </div>
+
+            <div class="phone-wrap" aria-hidden="true">
+              <div class="phone">
+                <div class="phone-screen">
+                  <div class="phone-notch"></div>
+                  <div class="ladder-head">
+                    <p class="ladder-kicker">Ladder · Tennis</p>
+                    <p class="ladder-title">Saturday Crew</p>
+                    <p class="ladder-sub">Autumn season · 8 players</p>
+                  </div>
+                  <div class="ladder-list">
+                    <div class="ladder-row"><span class="rank">1</span><span class="avatar" style="background:#0F1B33">KA</span><span class="who">Karim<small>Level 4.0</small></span><span class="wl">7–2</span></div>
+                    <div class="ladder-row is-me"><span class="rank">2</span><span class="avatar" style="background:#1565FF">JI</span><span class="who">Jimmy (you)<small>Level 3.5</small></span><span class="ladder-up">▲ 2</span></div>
+                    <div class="ladder-row"><span class="rank">3</span><span class="avatar" style="background:#12B76A">RA</span><span class="who">Rami<small>Level 3.5</small></span><span class="wl">5–3</span></div>
+                    <div class="ladder-row"><span class="rank">4</span><span class="avatar" style="background:#F26B1D">NO</span><span class="who">Nour<small>Level 3.0</small></span><span class="wl">4–4</span></div>
+                  </div>
+                  <div class="ladder-result">
+                    <span class="label">Latest result</span>
+                    <div class="ladder-score"><b>Jimmy</b><span class="sets"><span>6</span><span>7</span></span></div>
+                    <div class="ladder-score"><b style="color:#5B6785">Rami</b><span class="sets"><span class="lost">4</span><span class="lost">5</span></span></div>
+                    <div class="ladder-ok"><svg><use href="#i-check"/></svg>Confirmed by both players</div>
+                  </div>
+                </div>
+              </div>
+              <div class="float-chip float-chip--a">
+                <span class="dot" style="background:#D4F21C;color:#0F1B33"><svg><use href="#i-trophy"/></svg></span>
+                <span>You moved up to #2 <small>Karim, you're next</small></span>
+              </div>
+              <div class="float-chip float-chip--b">
+                <span class="dot" style="background:#E3F8EE;color:#067647"><svg><use href="#i-check"/></svg></span>
+                <span>Score confirmed <small>6–4, 7–5</small></span>
+              </div>
+            </div>
           </div>
-          <div class="float-chip float-chip--b">
-            <span class="dot" style="background:#E7F0FF;color:#1565FF"><svg><use href="#i-msg"/></svg></span>
-            <span>Game on! <small>Chat is open</small></span>
-          </div>
+        </div>
+
+        <div class="hero-dots" role="tablist" aria-label="Choose a slide">
+          <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-controls="slide-play" data-slide="0">Find players</button>
+          <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-controls="slide-ladder" data-slide="1">Ladders &amp; scores</button>
         </div>
       </div>
     </section>
@@ -512,7 +543,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="assets/logo.svg" alt="Concorde sports" width="284" height="48">
+          <span class="logo"><img src="assets/logo-mark.svg" alt="" width="52" height="40"><span class="logo-word">Concorde<small>sports</small></span></span>
           <p>Play together. A sports app made in Lebanon for players, parents, coaches and clubs.</p>
         </div>
         <nav aria-label="Product">

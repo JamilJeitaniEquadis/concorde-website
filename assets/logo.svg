@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284 48" width="284" height="48" role="img" aria-labelledby="t">
-  <!-- PLACEHOLDER LOGO. Replace this file with the final logo (keep the name assets/logo.svg).
-       It is shown on dark backgrounds (header and footer), so the final file should be the light/reversed version. -->
-  <title id="t">Concorde sports</title>
-  <defs>
-    <clipPath id="ball"><circle cx="24" cy="24" r="21"/></clipPath>
-  </defs>
-  <circle cx="24" cy="24" r="21" fill="#D4F21C"/>
-  <g clip-path="url(#ball)" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round">
-    <path d="M9 6 C19 15 19 33 9 42"/>
-    <path d="M39 6 C29 15 29 33 39 42"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1151 1166" role="img" aria-label="Concorde sports">
+  <!-- Concorde logo, square, on the brand navy (for profile pictures, documents, app icons).
+       The website header/footer use assets/logo-mark.svg (transparent) next to the "Concorde" wordmark. -->
+  <rect width="1151" height="1166" fill="#181E40"/>
+  <path fill="#FFFFFF" d="M746 376A340 323 0 1 0 746 800L653 715A200 201 0 1 1 653 461Z"/>
+  <clipPath id="cb"><circle cx="904" cy="809" r="95"/></clipPath>
+  <circle cx="904" cy="809" r="95" fill="#D3EB57"/>
+  <g clip-path="url(#cb)" fill="none" stroke="#FFFFFF" stroke-width="7">
+    <path d="M836 741C882 778 882 840 836 877"/>
+    <path d="M972 741C926 778 926 840 972 877"/>
   </g>
-  <text x="56" y="34" font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="30" fill="#FFFFFF" textLength="168" lengthAdjust="spacingAndGlyphs">Concorde</text>
-  <text x="230" y="34" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="500" font-size="14" fill="#D4F21C" textLength="48" lengthAdjust="spacingAndGlyphs">sports</text>
 </svg>

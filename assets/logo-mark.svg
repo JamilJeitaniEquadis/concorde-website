@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1151 1166">
-  <!-- Concorde "C." mark on the brand navy. -->
-  <rect width="1151" height="1166" rx="250" fill="#181E40"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="140 255 870 670" role="img" aria-label="Concorde sports">
+  <!-- Concorde "C." mark: white C, tennis ball as the full stop. For dark backgrounds. -->
   <path fill="#FFFFFF" d="M746 376A340 323 0 1 0 746 800L653 715A200 201 0 1 1 653 461Z"/>
   <clipPath id="cb"><circle cx="904" cy="809" r="95"/></clipPath>
   <circle cx="904" cy="809" r="95" fill="#D3EB57"/>

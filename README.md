@@ -55,17 +55,13 @@ Any static server works (VS Code "Live Server" extension, `npx serve`, etc.).
 
 Social networks need absolute URLs for `og:image`, so the share preview only works once the real domain is in place.
 
-## Swap the logo
+## Logo
 
-The logo lives in **one file**: `assets/logo.svg`. Every page references it with
-`<img src="assets/logo.svg" ...>`, so replacing that file updates the header and footer everywhere.
-
-- The logo sits on the dark navy header and footer, so use the **light / reversed** version (white wordmark, "sports" in ball colour or white).
-- Keep the file name `assets/logo.svg`. If the new logo has a different shape, update the `width` / `height` attributes on the `<img>` tags (they're only used for aspect ratio; the displayed height is set in CSS: `.brand img` and `.footer-brand img` in `assets/css/styles.css`).
-- Ask the agency to export text as outlines (paths), not live text, so it looks identical on every device. The current placeholder uses live text with a system font fallback.
-- Favicon: replace `assets/favicon.svg` (square, simple mark).
-- Also regenerate the PNG icons in `assets/img/` (`icon-192.png`, `icon-512.png`, `apple-touch-icon.png` at 180×180) and the social preview `og-image.png` (1200×630) with the final artwork.
-
+- `assets/brand/concorde-logo-original.jpg`: the logo as supplied (white "C." with the tennis ball, on navy).
+- `assets/logo-mark.svg`: the same mark redrawn as a vector, transparent, for dark backgrounds. The header and footer show it
+  next to the "Concorde sports" wordmark (live text in the site font, see `.logo` in `styles.css`).
+- `assets/logo.svg`: the square logo on navy as a vector (profile pictures, documents).
+- `assets/favicon.svg`, `assets/img/icon-*.png`, `apple-touch-icon.png` and `og-image.png` are made from the logo.
 ## Edit the WhatsApp number
 
 The number appears as links to `https://wa.me/96178806042` (some with a prefilled `?text=` message)
