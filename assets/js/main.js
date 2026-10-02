@@ -3,6 +3,10 @@
   "use strict";
 
   var doc = document.documentElement;
+
+  // Always open at the top (first section), unless the link points to a section (#pricing…).
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) window.scrollTo(0, 0);
   doc.classList.add("js");
 
   // ----- Mobile menu -----

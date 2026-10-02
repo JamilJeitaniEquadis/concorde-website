@@ -705,7 +705,7 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 }
 body.menu-open .site-header { background: var(--ink); }
 .brand .logo img { height: 44px; }
-@media (min-width: 960px) { .brand .logo img { height: 52px; } }
+@media (min-width: 960px) { .brand .logo img { height: 66px; } }
 /* the first section slides up under the header */
 main { margin-top: calc(-1 * var(--header-h)); }
 .hero { padding-top: calc(var(--header-h) + 36px); }
@@ -729,4 +729,17 @@ main { margin-top: calc(-1 * var(--header-h)); }
   .store-btn { flex: 1 1 0; min-width: 0; padding: 10px 12px; gap: 9px; font-size: 1.02rem; }
   .store-btn svg { width: 24px; height: 24px; }
   .store-btn small { font-size: .6rem; }
+}
+/* ---------- Mobile first section: one tidy column, no empty gaps ---------- */
+@media (max-width: 959px) {
+  .hero { padding-bottom: 28px; }
+  .hero-inner { gap: 26px; }
+  .hero-copy { display: flex; flex-direction: column; }
+  .hero-brand { margin-bottom: 10px; }
+  .hero .lead { margin-bottom: 0; }
+  /* dots right under the text they control, then the store buttons */
+  .hero-dots { order: 2; margin-top: 18px; }
+  .store-row { order: 3; margin-top: 22px; }
+  .phone { width: min(250px, 68vw); }
+  .phone-wrap { padding: 0; }
 }
