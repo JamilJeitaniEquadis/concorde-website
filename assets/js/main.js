@@ -63,49 +63,42 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
-  // ----- Hero slider: two slides, changes every 7s, pauses on hover/focus, still when reduced motion -----
-  var slides = document.querySelectorAll(".hero-slide");
+  // ----- Hero rotator: the text and the phone screen change every 4.5s; buttons stay put -----
+  var texts = document.querySelectorAll(".rot-item");
+  var shots = document.querySelectorAll(".shot");
   var dots = document.querySelectorAll(".hero-dot");
-  if (slides.length > 1) {
+  if (texts.length > 1) {
     var current = 0, timer = null;
     var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var show = function (i) {
-      current = (i + slides.length) % slides.length;
-      slides.forEach(function (s, k) {
-        var on = k === current;
-        s.classList.toggle("is-active", on);
-        if (on) s.removeAttribute("inert"); else s.setAttribute("inert", "");
+      current = (i + texts.length) % texts.length;
+      texts.forEach(function (el, k) {
+        el.classList.toggle("is-active", k === current);
+        el.setAttribute("aria-hidden", String(k !== current));
       });
+      shots.forEach(function (el, k) { el.classList.toggle("is-active", k === current); });
       dots.forEach(function (d, k) {
         d.classList.toggle("is-active", k === current);
         d.setAttribute("aria-selected", String(k === current));
       });
     };
-    var start = function () { if (!still && !timer) timer = setInterval(function () { show(current + 1); }, 7000); };
-    var stop = function () { clearInterval(timer); timer = null; };
-    dots.forEach(function (d) {
-      d.addEventListener("click", function () { stop(); show(Number(d.getAttribute("data-slide"))); start(); });
-    });
-    var box = document.getElementById("hero-slides");
-    if (box) {
-      box.addEventListener("mouseenter", stop);
-      box.addEventListener("mouseleave", start);
-      box.addEventListener("focusin", stop);
-      box.addEventListener("focusout", start);
-      // Swipe left/right on phones.
-      var x0 = null;
-      box.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-      box.addEventListener("touchend", function (e) {
+    var start = function () { if (!still && !timer) timer = setInterval(function () { show(current + 1); }, 4500); };
+    var restart = function () { clearInterval(timer); timer = null; start(); };
+    dots.forEach(function (d, k) { d.addEventListener("click", function () { show(k); restart(); }); });
+    // Swipe left/right on the phone.
+    var phone = document.querySelector(".shot-screen"), x0 = null;
+    if (phone) {
+      phone.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      phone.addEventListener("touchend", function (e) {
         if (x0 === null) return;
         var dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 50) { stop(); show(current + (dx < 0 ? 1 : -1)); start(); }
+        if (Math.abs(dx) > 40) { show(current + (dx < 0 ? 1 : -1)); restart(); }
         x0 = null;
       });
     }
-    document.addEventListener("visibilitychange", function () { if (document.hidden) stop(); else start(); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) { clearInterval(timer); timer = null; } else start(); });
     start();
   }
-
   // ----- Current year in footer -----
   var y = document.querySelectorAll("[data-year]");
   y.forEach(function (el) { el.textContent = String(new Date().getFullYear()); });
