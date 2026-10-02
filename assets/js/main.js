@@ -72,6 +72,21 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  // ----- Back to top: a small floating button once you've scrolled down -----
+  var up = document.createElement("button");
+  up.type = "button";
+  up.className = "to-top";
+  up.setAttribute("aria-label", "Back to top");
+  up.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  up.addEventListener("click", function () {
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+  });
+  document.body.appendChild(up);
+  var onUp = function () { up.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8); };
+  onUp();
+  window.addEventListener("scroll", onUp, { passive: true });
+
   // ----- Reveal on scroll (CSS only animates when prefers-reduced-motion is not set) -----
   var items = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window)) {

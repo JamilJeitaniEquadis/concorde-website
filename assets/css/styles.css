@@ -746,3 +746,20 @@ main { margin-top: calc(-1 * var(--header-h)); }
 }
 html { background: var(--ink); }
 body { background: var(--surface); }
+
+/* ---------- Back to top ---------- */
+.to-top {
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  width: 48px; height: 48px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  background: var(--ball); color: var(--ink);
+  box-shadow: 0 8px 24px rgba(15, 27, 51, .25);
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: #E1FA45; }
+.to-top svg { width: 22px; height: 22px; }
+body.menu-open .to-top { display: none; }
+@media (min-width: 960px) { .to-top { right: 28px; bottom: 28px; width: 52px; height: 52px; } }
+@media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
