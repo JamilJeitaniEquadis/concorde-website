@@ -76,8 +76,8 @@
         <span class="logo"><img src="assets/logo-mark.svg" alt="" width="52" height="40"></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-        <svg class="icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
-        <svg class="icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+        <span class="burger" aria-hidden="true"><span></span><span></span></span>
+
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         <ul>
@@ -115,11 +115,7 @@
               <p class="lead">Swipe through players at your level near you. Join open games and request courts at local clubs.</p>
             </div>
             <div class="rot-item" aria-hidden="true">
-              <p class="display hero-h1">Swipe right. <span class="accent">Game on.</span></p>
-              <p class="lead">When you both want to play, the chat opens. Pick a time, request the court, and you're on.</p>
-            </div>
-            <div class="rot-item" aria-hidden="true">
-              <p class="display hero-h1">Settle it on court. <span class="accent">No one forgets the score.</span></p>
+              <p class="display hero-h1">Competitions. <span class="accent">No one forgets the score.</span></p>
               <p class="lead">Start a ladder with your friends. Both players confirm every score, and the ladder keeps count.</p>
             </div>
           </div>
@@ -136,30 +132,24 @@
             <span class="store-btn" aria-disabled="true"><svg aria-hidden="true"><use href="#i-phone"/></svg><span>Google Play <small>coming soon</small></span></span>
           </div>
           <div class="hero-dots" role="tablist" aria-label="Choose a slide">
-            <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Find players"></button>
-            <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="It's a match"></button>
-            <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Ladders and scores"></button>
+            <button class="hero-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Play together"></button>
+            <button class="hero-dot" type="button" role="tab" aria-selected="false" aria-label="Competitions"></button>
           </div>
         </div>
 
         <div class="phone-wrap">
           <div class="phone">
             <div class="phone-screen shot-screen">
-              <img class="shot is-active" src="assets/img/screens/swipe.webp" width="924" height="2000" alt="The Play screen in Concorde: Karim, level 3.5, less than 1 km away, 80% match, with swipe buttons">
-              <img class="shot" src="assets/img/screens/match.webp" width="924" height="2000" alt="Swiping right on Ziad: Let's play" loading="lazy">
+              <img class="shot is-active" src="assets/img/screens/match.webp" width="924" height="2000" alt="Swiping right on a player in Concorde: Let's play">
               <img class="shot" src="assets/img/screens/ladder.webp" width="924" height="2000" alt="Saturday Crew, a friends' ladder: you are #2 of 4, latest result 6-4 7-5" loading="lazy">
             </div>
           </div>
           <!-- One bubble per slide, each in its own spot. -->
-          <div class="float-chip chip-pos-0 is-active" data-slide="0" aria-hidden="true">
-            <span class="dot" style="background:#12B76A;color:#fff"><svg><use href="#i-check"/></svg></span>
-            <span>80% match <small>Same level · less than 1 km away</small></span>
-          </div>
-          <div class="float-chip chip-pos-1" data-slide="1" aria-hidden="true">
+          <div class="float-chip chip-pos-1 is-active" data-slide="0" aria-hidden="true">
             <span class="dot" style="background:#D4F21C;color:#0F1B33"><svg><use href="#i-msg"/></svg></span>
             <span>It's a match! <small>Chat is open · Saturday 9:00?</small></span>
           </div>
-          <div class="float-chip chip-pos-2" data-slide="2" aria-hidden="true">
+          <div class="float-chip chip-pos-2" data-slide="1" aria-hidden="true">
             <span class="dot" style="background:#E3F8EE;color:#067647"><svg><use href="#i-trophy"/></svg></span>
             <span>Score confirmed <small>6–4, 7–5 · you moved up to #2</small></span>
           </div>

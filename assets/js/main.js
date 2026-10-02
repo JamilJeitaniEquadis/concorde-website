@@ -14,6 +14,7 @@
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open menu");
     nav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
   }
 
   if (toggle && nav) {
@@ -22,6 +23,7 @@
       toggle.setAttribute("aria-expanded", String(!open));
       toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
       nav.classList.toggle("is-open", !open);
+      document.body.classList.toggle("menu-open", !open);
     });
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a")) closeMenu();
