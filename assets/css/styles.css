@@ -361,6 +361,15 @@ button { font: inherit; }
 .phone-wrap .float-chip { opacity: 0; transform: translateY(8px) scale(.96); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
 .phone-wrap .float-chip.is-active { opacity: 1; transform: none; transition: opacity .45s ease .3s, transform .45s cubic-bezier(.2, .8, .2, 1) .3s; }
 html:not(.js) .phone-wrap .float-chip:not([data-slide="0"]) { display: none; }
+/* Each slide's bubble sits next to the part of the screen it explains */
+.chip-pos-0 { right: 0; top: 18%; }      /* the match ring */
+.chip-pos-1 { left: 0; top: 34%; }       /* the "Let's play" stamp */
+.chip-pos-2 { right: 0; bottom: 16%; }   /* the latest result */
+@media (min-width: 960px) {
+  .chip-pos-0 { right: -10%; }
+  .chip-pos-1 { left: -14%; }
+  .chip-pos-2 { right: -12%; }
+}
 .hero-dot {
   width: 26px; height: 6px; padding: 0; border: 0; border-radius: 6px; cursor: pointer;
   background: rgba(255, 255, 255, .25); transition: width .3s ease, background .3s ease;
