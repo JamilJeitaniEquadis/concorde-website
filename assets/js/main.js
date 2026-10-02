@@ -103,6 +103,11 @@
     document.addEventListener("visibilitychange", function () { if (document.hidden) { clearInterval(timer); timer = null; } else start(); });
     start();
   }
+  // ----- Store buttons: not live yet -----
+  document.querySelectorAll('.store-btn[aria-disabled="true"]').forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); });
+  });
+
   // ----- Current year in footer -----
   var y = document.querySelectorAll("[data-year]");
   y.forEach(function (el) { el.textContent = String(new Date().getFullYear()); });

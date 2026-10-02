@@ -691,3 +691,42 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 .ic-badge svg { width: 18px; height: 18px; }
 .footer-bottom a { color: var(--ball); font-weight: 700; text-decoration: none; }
 .footer-bottom a:hover { text-decoration: underline; }
+/* ---------- Transparent header over the hero, more room for the logo ---------- */
+:root { --header-h: 84px; }
+@media (min-width: 960px) { :root { --header-h: 100px; } }
+.site-header {
+  background: transparent; border-bottom-color: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.site-header.is-scrolled {
+  background: rgba(15, 27, 51, .82); border-bottom-color: rgba(255, 255, 255, .06);
+  -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px);
+}
+body.menu-open .site-header { background: var(--ink); }
+.brand .logo img { height: 44px; }
+@media (min-width: 960px) { .brand .logo img { height: 52px; } }
+/* the first section slides up under the header */
+main { margin-top: calc(-1 * var(--header-h)); }
+.hero { padding-top: calc(var(--header-h) + 36px); }
+@media (min-width: 960px) { .hero { padding-top: calc(var(--header-h) + 64px); } }
+.legal-hero { padding-top: calc(var(--header-h) + 48px); }
+.notfound { min-height: 100vh; padding-top: calc(var(--header-h) + 40px); }
+
+/* ---------- Store buttons (will link to the App Store and Google Play) ---------- */
+.store-row { gap: 12px; margin-top: 30px; }
+.store-btn {
+  gap: 12px; padding: 11px 22px 11px 16px; border-radius: 16px; min-width: 186px;
+  background: #000; border: 1px solid rgba(255, 255, 255, .28); color: var(--white); text-decoration: none;
+  line-height: 1.1; font-weight: 700; font-size: 1.22rem; letter-spacing: -.01em;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.store-btn:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, .55); }
+.store-btn svg { width: 28px; height: 28px; opacity: 1; flex: none; }
+.store-btn small { display: block; font-size: .68rem; font-weight: 500; color: #C9D3EA; letter-spacing: .02em; margin-bottom: 2px; }
+.store-btn[aria-disabled="true"] { cursor: default; }@media (max-width: 480px) {
+  .store-row { flex-wrap: nowrap; gap: 10px; }
+  .store-btn { flex: 1 1 0; min-width: 0; padding: 10px 12px; gap: 9px; font-size: 1.02rem; }
+  .store-btn svg { width: 24px; height: 24px; }
+  .store-btn small { font-size: .6rem; }
+}
