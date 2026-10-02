@@ -1,6 +1,6 @@
-# Concorde sports — marketing website
+# Concorde Sport — marketing website
 
-Static marketing site for **Concorde sports**, the Lebanese sports app (tennis and padel first).
+Static marketing site for **Concorde Sport**, the Lebanese sports app (tennis and padel first).
 Plain HTML + CSS + a little vanilla JS. No build step, no frameworks, no npm. It can be served as-is by GitHub Pages.
 
 ## Files
@@ -59,7 +59,7 @@ Social networks need absolute URLs for `og:image`, so the share preview only wor
 
 - `assets/brand/concorde-logo-original.jpg`: the logo as supplied (white "C." with the tennis ball, on navy).
 - `assets/logo-mark.svg`: the same mark redrawn as a vector, transparent, for dark backgrounds. The header and footer show it
-  next to the "Concorde sports" wordmark (live text in the site font, see `.logo` in `styles.css`).
+  next to the "Concorde Sport" wordmark (live text in the site font, see `.logo` in `styles.css`).
 - `assets/logo.svg`: the square logo on navy as a vector (profile pictures, documents).
 - `assets/favicon.svg`, `assets/img/icon-*.png`, `apple-touch-icon.png` and `og-image.png` are made from the logo.
 ## Edit the WhatsApp number

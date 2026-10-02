@@ -1,4 +1,4 @@
-/* Concorde sports — small progressive enhancements. The site works without JS. */
+/* Concorde Sport — small progressive enhancements. The site works without JS. */
 (function () {
   "use strict";
 
