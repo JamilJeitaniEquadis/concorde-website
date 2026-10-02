@@ -67,6 +67,7 @@
   var texts = document.querySelectorAll(".rot-item");
   var shots = document.querySelectorAll(".shot");
   var dots = document.querySelectorAll(".hero-dot");
+  var chips = document.querySelectorAll(".float-chip[data-slide]");
   if (texts.length > 1) {
     var current = 0, timer = null;
     var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -77,6 +78,7 @@
         el.setAttribute("aria-hidden", String(k !== current));
       });
       shots.forEach(function (el, k) { el.classList.toggle("is-active", k === current); });
+      chips.forEach(function (el) { el.classList.toggle("is-active", Number(el.getAttribute("data-slide")) === current); });
       dots.forEach(function (d, k) {
         d.classList.toggle("is-active", k === current);
         d.setAttribute("aria-selected", String(k === current));

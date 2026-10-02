@@ -219,6 +219,7 @@ button { font: inherit; }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--white); }
 .brand, .brand:hover, .footer-brand a { text-decoration: none; }
 .brand .logo img, .footer-brand .logo img { height: 34px; width: auto; margin: 0; }
+.brand .logo img { height: 38px; }
 .logo-word {
   font-family: var(--font-display); font-stretch: 112%; font-weight: 900; font-size: 1.32rem;
   letter-spacing: -.01em; line-height: 1; display: inline-flex; align-items: baseline; gap: 6px;
@@ -350,6 +351,16 @@ button { font: inherit; }
 }
 .shot.is-active { opacity: 1; }
 .hero-dots { display: flex; gap: 8px; margin-top: 26px; }
+/* Fixed brand line above the changing text */
+.hero-brand {
+  margin: 0 0 14px; font-family: var(--font-display); font-stretch: 112%; font-weight: 900;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.7rem); letter-spacing: -.01em; color: var(--white);
+}
+.hero-brand span { color: var(--ball); }
+/* Bubbles change with the slide */
+.phone-wrap .float-chip { opacity: 0; transform: translateY(8px) scale(.96); transition: opacity .3s ease, transform .3s ease; pointer-events: none; }
+.phone-wrap .float-chip.is-active { opacity: 1; transform: none; transition: opacity .45s ease .3s, transform .45s cubic-bezier(.2, .8, .2, 1) .3s; }
+html:not(.js) .phone-wrap .float-chip:not([data-slide="0"]) { display: none; }
 .hero-dot {
   width: 26px; height: 6px; padding: 0; border: 0; border-radius: 6px; cursor: pointer;
   background: rgba(255, 255, 255, .25); transition: width .3s ease, background .3s ease;

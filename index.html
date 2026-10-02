@@ -73,7 +73,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="Concorde sports home">
-        <span class="logo"><img src="assets/logo-mark.svg" alt="" width="52" height="40"><span class="logo-word">Concorde<small>sports</small></span></span>
+        <span class="logo"><img src="assets/logo-mark.svg" alt="" width="52" height="40"></span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
         <svg class="icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
@@ -108,6 +108,7 @@
       <div class="container hero-inner" id="hero-rotator" aria-roledescription="carousel" aria-label="What Concorde does">
         <div class="hero-copy">
           <!-- Only this text and the phone screen change; the buttons stay put. -->
+          <p class="hero-brand">Concorde <span>sports</span></p>
           <div class="rot" aria-live="polite">
             <div class="rot-item is-active">
               <p class="eyebrow">Launching in Lebanon · Tennis &amp; padel</p>
@@ -151,6 +152,31 @@
               <img class="shot" src="assets/img/screens/match.webp" width="924" height="2000" alt="Swiping right on Ziad: Let's play" loading="lazy">
               <img class="shot" src="assets/img/screens/ladder.webp" width="924" height="2000" alt="Saturday Crew, a friends' ladder: you are #2 of 4, latest result 6-4 7-5" loading="lazy">
             </div>
+          </div>
+          <!-- Floating bubbles: two per slide, they change with the screen. -->
+          <div class="float-chip float-chip--a is-active" data-slide="0" aria-hidden="true">
+            <span class="dot" style="background:#12B76A;color:#fff"><svg><use href="#i-check"/></svg></span>
+            <span>80% match <small>Same level, 1 shared time</small></span>
+          </div>
+          <div class="float-chip float-chip--b is-active" data-slide="0" aria-hidden="true">
+            <span class="dot" style="background:#E7F0FF;color:#1565FF"><svg><use href="#i-pin"/></svg></span>
+            <span>Less than 1 km away <small>Beirut · Free Sat morning</small></span>
+          </div>
+          <div class="float-chip float-chip--a" data-slide="1" aria-hidden="true">
+            <span class="dot" style="background:#D4F21C;color:#0F1B33"><svg><use href="#i-check"/></svg></span>
+            <span>It's a match! <small>You and Ziad want to play</small></span>
+          </div>
+          <div class="float-chip float-chip--b" data-slide="1" aria-hidden="true">
+            <span class="dot" style="background:#E7F0FF;color:#1565FF"><svg><use href="#i-msg"/></svg></span>
+            <span>Saturday 9:00? <small>Chat is open</small></span>
+          </div>
+          <div class="float-chip float-chip--a" data-slide="2" aria-hidden="true">
+            <span class="dot" style="background:#D4F21C;color:#0F1B33"><svg><use href="#i-trophy"/></svg></span>
+            <span>You moved up to #2 <small>Karim, you're next</small></span>
+          </div>
+          <div class="float-chip float-chip--b" data-slide="2" aria-hidden="true">
+            <span class="dot" style="background:#E3F8EE;color:#067647"><svg><use href="#i-check"/></svg></span>
+            <span>Score confirmed <small>6–4, 7–5 · by both players</small></span>
           </div>
         </div>
       </div>
