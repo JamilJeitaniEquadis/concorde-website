@@ -445,6 +445,48 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
   .sport { min-height: 150px; padding: 20px; }
 }
 
+/* ---------- Everything. One app. (feature overview right after the hero) ---------- */
+:root { --women: #E0457B; --women-soft: #FDECF3; --women-line: #F8C9DA; }
+.everything { padding: 48px 0 56px; }
+.everything .h2 .accent { color: var(--court); }
+/* the Players section is white too: a thin line keeps the two apart */
+.everything + .section--white { padding-top: 0; }
+.everything + .section--white > .container { border-top: 1px solid var(--line); padding-top: 64px; }
+.all-grid { list-style: none; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+.all-card {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: 16px;
+}
+.all-card .ic {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--court-soft); color: var(--court);
+}
+.all-card .ic svg { width: 22px; height: 22px; }
+.all-card h3 { font-size: 1.02rem; font-weight: 700; margin: 2px 0 2px; }
+.all-card p { color: var(--muted); font-size: .92rem; line-height: 1.5; margin: 0; }
+.all-card--women { background: var(--women-soft); border-color: var(--women-line); }
+.all-card--women .ic { background: var(--women); color: var(--white); }
+.all-card--women h3 { color: #A3204F; }
+.all-card--women p { color: #6E3550; }
+.all-line {
+  margin: 28px auto 0; width: fit-content; max-width: 100%; text-align: center;
+  background: var(--ink); color: var(--white); border-radius: var(--r-md); padding: 14px 22px;
+  font-family: var(--font-display); font-stretch: 112%; font-weight: 800; letter-spacing: -.01em;
+  font-size: clamp(1rem, .9rem + .7vw, 1.35rem); line-height: 1.3;
+}
+.all-line span { color: var(--ball); margin: 0 .2em; }
+@media (min-width: 600px) {
+  .all-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .all-line { border-radius: var(--r-pill); padding: 14px 28px; }
+}
+@media (min-width: 960px) {
+  .everything { padding: 64px 0 72px; }
+  .all-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  .all-card { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 22px 20px; }
+  .all-line { margin-top: 36px; }
+}
+
 /* ---------- Steps ---------- */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: step; }
 .step {
