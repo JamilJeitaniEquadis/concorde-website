@@ -171,15 +171,13 @@
         t.tabIndex = on ? 0 : -1;
       });
       if (focus) idTabs[i].focus();
-      // The card turns, the new role is printed on it, it turns back.
-      if (first || still) { paint(i); return; }
-      card.classList.add("is-flipping");
-      setTimeout(function () { paint(i); card.classList.remove("is-flipping"); }, 220);
+      // The card stays still; the new role fades in where the old one was (CSS).
+      paint(i);
     };
     var stop = function () { idDone = true; clearInterval(idAuto); idAuto = null; };
     var play = function () {
       if (still || idDone || idAuto || !idSeen || document.hidden) return;
-      idAuto = setInterval(function () { pick(cur + 1, false); }, 4500);
+      idAuto = setInterval(function () { pick(cur + 1, false); }, 5500);
     };
     idTabs.forEach(function (t, k) { t.addEventListener("click", function () { stop(); pick(k, false); }); });
     idTabList.addEventListener("keydown", function (e) {
