@@ -445,92 +445,114 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
   .sport { min-height: 150px; padding: 20px; }
 }
 
-/* ---------- Everything. One app. (feature overview right after the hero) ---------- */
 :root { --women: #E0457B; --women-soft: #FDECF3; --women-line: #F8C9DA; }
-.everything { padding: 48px 0 56px; }
-.everything .h2 .accent { color: var(--court); }
-/* the Players section is white too: a thin line keeps the two apart */
-.everything + .section--white { padding-top: 0; }
-.everything + .section--white > .container { border-top: 1px solid var(--line); padding-top: 64px; }
-/* Role tabs. Without JS: tabs hidden, panels stacked. With JS (.js on <html>): panels sit on a sliding track. */
-.roles { max-width: 920px; margin: 0 auto; }
-/* The five roles, all visible at once: that's the message ("not just for players"). Each has its colour (--rc). */
-.role-tabs { display: none; }
-.js .role-tabs {
-  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 0 auto 18px; max-width: 760px;
+/* ---------- Everything. One app.: a member ID card that changes with the role ---------- */
+.everything {
+  background: radial-gradient(900px 520px at 90% 0%, rgba(21, 101, 255, .5), transparent 60%),
+              radial-gradient(600px 400px at 0% 100%, rgba(212, 242, 28, .10), transparent 60%), var(--ink);
+  color: var(--white); padding: 64px 0 56px; overflow: hidden;
 }
-.role-tab {
-  --rc: var(--court); --rc-soft: var(--court-soft);
-  font: inherit; cursor: pointer; display: grid; justify-items: center; gap: 8px;
-  padding: 10px 2px 12px; border-radius: 18px; background: var(--white); border: 2px solid var(--line); color: var(--ink);
-  transition: background-color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-}
-.role-ico {
-  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--rc-soft); color: var(--rc); transition: background-color .2s ease, color .2s ease;
-}
-.role-ico svg { width: 22px; height: 22px; }
-.role-name { font-weight: 800; font-size: .72rem; line-height: 1.15; text-align: center; }
-@media (hover: hover) { .role-tab:hover { border-color: var(--rc); transform: translateY(-2px); } }
-.role-tab[aria-selected="true"] { background: var(--rc); border-color: var(--rc); color: var(--white); box-shadow: 0 10px 24px -10px var(--rc); }
-.role-tab[aria-selected="true"] .role-ico { background: rgba(255, 255, 255, .2); color: var(--white); }
-.role-tab:focus-visible { outline-color: var(--rc); outline-offset: 2px; }
+.everything .h2 { color: var(--white); }
+.everything .h2 .accent { color: var(--ball); }
+.everything .lead { color: #C4CEE6; }
+.everything + .section--white { padding-top: 72px; }
+.everything-inner { display: grid; gap: 36px; align-items: center; }
 
-.role-track { display: grid; gap: 12px; }
-.js .role-viewport { overflow: hidden; border-radius: var(--r-lg); }
-.js .role-track { display: flex; gap: 0; transition: transform .4s ease; }
-.js .role-panel { flex: 0 0 100%; min-width: 0; }
-.js .role-title { display: none; } /* the selected role button already names the panel */
+/* Role pills: white outline on dark, the chosen one in ball green. */
+.id-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.id-tab {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  background: rgba(255, 255, 255, .06); color: var(--white); border: 2px solid rgba(255, 255, 255, .22);
+  border-radius: var(--r-pill); padding: 10px 16px; font-weight: 800; font-size: .95rem;
+  transition: background .2s, border-color .2s, color .2s, transform .2s;
+}
+.id-tab svg { width: 18px; height: 18px; }
+@media (hover: hover) { .id-tab:hover { border-color: var(--ball); transform: translateY(-2px); } }
+.id-tab[aria-selected="true"] { background: var(--ball); border-color: var(--ball); color: var(--ink); box-shadow: 0 10px 30px rgba(212, 242, 28, .25); }
+.id-tab:focus-visible { outline-color: var(--ball); }
+.id-tabs { display: none; }
+.js .id-tabs { display: flex; }
+@media (max-width: 759px) {
+  /* one swipeable row of pills on phones */
+  .js .id-tabs { flex-wrap: nowrap; overflow-x: auto; margin: 8px calc(var(--gutter) * -1) 0; padding: 4px var(--gutter) 10px; scrollbar-width: none; }
+  .js .id-tabs::-webkit-scrollbar { display: none; }
+  .id-tab { flex: 0 0 auto; }
+}
 
-.role-panel {
-  --rc: var(--court); --rc-soft: var(--court-soft);
-  display: grid; gap: 16px; align-content: start;
-  background: var(--rc-soft); border: 1px solid transparent; border-radius: var(--r-lg);
-  padding: 24px 20px;
+/* The card: portrait badge on phones, landscape card from tablets up. */
+.id-stage { display: flex; justify-content: center; perspective: 1400px; }
+.id-card {
+  position: relative; width: min(340px, 100%); border-radius: 28px; padding: 22px 22px 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, 0) 45%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 2px, transparent 2px 46px),
+    linear-gradient(160deg, var(--court) 0%, var(--court-deep) 70%, #072B78 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .18);
+  color: var(--white); display: grid; gap: 14px;
+  transform-style: preserve-3d; transition: transform .5s cubic-bezier(.2, .8, .2, 1);
 }
-.role-panel:focus-visible { outline-offset: -3px; border-radius: var(--r-lg); }
-.role-orb {
-  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--rc); color: var(--white);
+/* the lanyard slot of a badge */
+.id-card::before {
+  content: ""; position: absolute; top: 10px; left: 50%; width: 64px; height: 8px; margin-left: -32px;
+  border-radius: 8px; background: rgba(15, 27, 51, .55);
 }
-.role-orb svg { width: 28px; height: 28px; }
-.role-title { font-size: 1.05rem; font-weight: 800; margin: 0 0 4px; color: var(--rc); }
-.role-line { font-weight: 800; font-size: 1.15rem; line-height: 1.35; color: var(--ink); margin: 0 0 16px; }
-.role-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.role-list li { display: flex; align-items: center; gap: 12px; font-size: .97rem; color: var(--ink); font-weight: 600; }
-.role-list svg {
-  flex: 0 0 auto; width: 34px; height: 34px; padding: 8px; border-radius: 50%;
-  background: var(--white); color: var(--rc); box-shadow: var(--shadow-sm);
+.id-card.is-flipping { transform: rotateY(90deg) scale(.96); transition-duration: .22s; }
+.id-top { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.id-logo { width: 40px; height: auto; }
+.id-brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 900; letter-spacing: .02em; font-size: .95rem; }
+.id-kind { margin-left: auto; font-size: .7rem; font-weight: 800; letter-spacing: .16em; color: var(--ball); border: 1.5px solid var(--ball); border-radius: var(--r-pill); padding: 3px 9px; }
+.id-chip {
+  width: 58px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, var(--ball), #B9D80F);
+  display: grid; place-items: center; box-shadow: inset 0 0 0 2px rgba(15, 27, 51, .15);
 }
-@media (prefers-reduced-motion: reduce) {
-  .js .role-track, .role-tab, .role-ico { transition: none; }
-}.all-line {
-  margin: 28px auto 0; width: fit-content; max-width: 100%; text-align: center;
-  background: var(--ink); color: var(--white); border-radius: var(--r-md); padding: 14px 22px;
+.id-chip svg { width: 30px; height: 30px; }
+.js .id-face:not(.is-active) { display: none; }
+.id-label { margin: 0; font-size: .7rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #BFD3FF; }
+.id-role {
+  margin: 2px 0 6px; font-family: var(--font-display); font-stretch: 125%; font-weight: 900;
+  font-size: clamp(2.1rem, 1.6rem + 2.4vw, 3rem); line-height: 1; letter-spacing: -.01em; color: var(--ball);
+  text-transform: uppercase;
+}
+.id-line { margin: 0 0 14px; font-weight: 700; font-size: 1.02rem; line-height: 1.35; }
+.id-perks { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.id-perks li { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .95rem; }
+.id-perks svg { flex: 0 0 22px; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: var(--ball); color: var(--ink); }
+.id-code { margin: 14px 0 0; font-size: .78rem; letter-spacing: .12em; color: #BFD3FF; }
+.id-code b { color: var(--white); font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: .08em; }
+.id-bottom { display: flex; align-items: center; gap: 12px; border-top: 1px dashed rgba(255, 255, 255, .3); padding-top: 12px; }
+.id-bars {
+  width: 96px; height: 26px; border-radius: 4px; opacity: .9;
+  background: repeating-linear-gradient(90deg, var(--white) 0 2px, transparent 2px 4px, var(--white) 4px 7px, transparent 7px 9px, var(--white) 9px 10px, transparent 10px 13px);
+}
+.id-sports { margin-left: auto; font-size: .66rem; font-weight: 800; letter-spacing: .14em; color: #BFD3FF; text-align: right; }
+/* Without JavaScript every role is shown, one under the other. */
+.id-face + .id-face { margin-top: 18px; padding-top: 18px; border-top: 1px dashed rgba(255, 255, 255, .3); }
+.js .id-face + .id-face { margin-top: 0; padding-top: 0; border-top: 0; }
+@media (prefers-reduced-motion: reduce) { .id-card, .id-card.is-flipping, .id-tab { transition: none; transform: none; } }
+
+.all-line {
+  margin: 40px auto 0; width: fit-content; max-width: 100%; text-align: center;
+  background: var(--ball); color: var(--ink); border-radius: var(--r-md); padding: 14px 22px;
   font-family: var(--font-display); font-stretch: 112%; font-weight: 800; letter-spacing: -.01em;
   font-size: clamp(1rem, .9rem + .7vw, 1.35rem); line-height: 1.3;
 }
-.all-line span { color: var(--ball); margin: 0 .2em; }
+.all-line span { color: var(--court); margin: 0 .2em; }
 @media (min-width: 600px) {
   .all-line { border-radius: var(--r-pill); padding: 14px 28px; }
 }
 @media (min-width: 760px) {
-  .js .role-tabs { margin-bottom: 28px; gap: 14px; }
-  .role-tab { padding: 18px 8px 16px; border-radius: 22px; gap: 10px; }
-  .role-ico { width: 64px; height: 64px; }
-  .role-ico svg { width: 30px; height: 30px; }
-  .role-name { font-size: .95rem; }
-  .role-panel { grid-template-columns: 180px minmax(0, 1fr); gap: 32px; align-items: center; padding: 40px 44px; }
-  .role-orb { width: 140px; height: 140px; justify-self: center; }
-  .role-orb svg { width: 64px; height: 64px; }
-  .role-line { font-size: 1.3rem; margin-bottom: 22px; }
-  .role-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  .id-card { width: min(560px, 100%); grid-template-columns: 1fr auto; padding: 26px 30px 20px; gap: 16px 24px; }
+  .id-card::before { display: none; }
+  .id-top { grid-column: 1 / -1; margin-top: 0; }
+  .id-chip { grid-column: 2; grid-row: 2; align-self: start; }
+  .id-faces { grid-column: 1; grid-row: 2; }
+  .id-bottom { grid-column: 1 / -1; }
+  .id-perks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; }
 }
 @media (min-width: 960px) {
-  .everything { padding: 64px 0 72px; }
-  .all-line { margin-top: 36px; }
+  .everything { padding: 96px 0 80px; }
+  .everything-inner { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 56px; }
 }
-
 /* ---------- Steps ---------- */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: step; }
 .step {

@@ -141,93 +141,70 @@
     document.addEventListener("visibilitychange", function () { if (document.hidden) { clearInterval(timer); timer = null; } else start(); });
     start();
   }
-  // ----- Role tabs ("Everything. One app."): a tablist over a sliding track of panels -----
-  var roles = document.querySelector("[data-roles]");
-  if (roles) {
-    var tabList = roles.querySelector("[data-role-tabs]");
-    var track = roles.querySelector("[data-role-track]");
-    var tabs = Array.prototype.slice.call(roles.querySelectorAll("[data-role-tab]"));
-    var panels = Array.prototype.slice.call(roles.querySelectorAll("[data-role-panel]"));
-    var active = 0, auto = null, autoDone = false, inView = false;
-    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    tabList.setAttribute("role", "tablist");
-    tabList.setAttribute("aria-label", "Who it's for");
-    tabs.forEach(function (t) { t.setAttribute("role", "tab"); });
-    panels.forEach(function (p, k) {
-      p.setAttribute("role", "tabpanel");
-      p.setAttribute("aria-labelledby", tabs[k].id);
+  // ----- "Everything. One app.": one member card, its content changes with the role you tap -----
+  var idBox = document.querySelector("[data-id]");
+  var idTabList = document.querySelector("[data-id-tabs]");
+  if (idBox && idTabList) {
+    var card = idBox.querySelector("[data-id-card]");
+    var idTabs = Array.prototype.slice.call(idTabList.querySelectorAll("[data-id-tab]"));
+    var faces = Array.prototype.slice.call(idBox.querySelectorAll("[data-id-face]"));
+    var cur = -1, idAuto = null, idDone = false, idSeen = false;
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    idTabList.setAttribute("role", "tablist");
+    idTabList.setAttribute("aria-label", "Who you are");
+    idTabs.forEach(function (t, k) {
+      t.setAttribute("role", "tab");
+      faces[k].setAttribute("role", "tabpanel");
+      faces[k].setAttribute("aria-labelledby", t.id);
     });
-
-    var select = function (i, focus) {
-      active = (i + tabs.length) % tabs.length;
-      tabs.forEach(function (t, k) {
-        var on = k === active;
+    var paint = function (i) {
+      faces.forEach(function (f, k) { f.classList.toggle("is-active", k === i); });
+    };
+    var pick = function (i, focus) {
+      i = (i + idTabs.length) % idTabs.length;
+      if (i === cur) return;
+      var first = cur === -1;
+      cur = i;
+      idTabs.forEach(function (t, k) {
+        var on = k === i;
         t.setAttribute("aria-selected", String(on));
         t.tabIndex = on ? 0 : -1;
       });
-      panels.forEach(function (p, k) {
-        var on = k === active;
-        p.tabIndex = on ? 0 : -1;
-        p.setAttribute("aria-hidden", String(!on));
-        if (on) p.removeAttribute("inert"); else p.setAttribute("inert", "");
-      });
-      track.style.transform = "translateX(" + (-100 * active) + "%)";
-      // Keep the selected pill visible in the scrollable tab row, without scrolling the page.
-      var t = tabs[active];
-      var left = t.getBoundingClientRect().left - tabList.getBoundingClientRect().left + tabList.scrollLeft;
-      var right = left + t.offsetWidth;
-      if (left < tabList.scrollLeft) tabList.scrollLeft = left - 6;
-      else if (right > tabList.scrollLeft + tabList.clientWidth) tabList.scrollLeft = right - tabList.clientWidth + 6;
-      if (focus) t.focus();
+      if (focus) idTabs[i].focus();
+      // The card turns, the new role is printed on it, it turns back.
+      if (first || still) { paint(i); return; }
+      card.classList.add("is-flipping");
+      setTimeout(function () { paint(i); card.classList.remove("is-flipping"); }, 220);
     };
-
-    // Gentle autoplay: every 6s while the section is on screen, stops for good on the first interaction.
-    var stopAuto = function () { autoDone = true; clearInterval(auto); auto = null; };
-    var runAuto = function () {
-      if (calm || autoDone || auto || !inView || document.hidden) return;
-      auto = setInterval(function () { select(active + 1, false); }, 6000);
+    var stop = function () { idDone = true; clearInterval(idAuto); idAuto = null; };
+    var play = function () {
+      if (still || idDone || idAuto || !idSeen || document.hidden) return;
+      idAuto = setInterval(function () { pick(cur + 1, false); }, 4500);
     };
-    var pauseAuto = function () { clearInterval(auto); auto = null; };
-
-    tabs.forEach(function (t, k) {
-      t.addEventListener("click", function () { stopAuto(); select(k, false); });
+    idTabs.forEach(function (t, k) { t.addEventListener("click", function () { stop(); pick(k, false); }); });
+    idTabList.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowRight" || e.key === "ArrowDown" ? cur + 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? cur - 1 : e.key === "Home" ? 0 : e.key === "End" ? idTabs.length - 1 : null;
+      if (n === null) return;
+      e.preventDefault(); stop(); pick(n, true);
     });
-    tabList.addEventListener("keydown", function (e) {
-      var next = null;
-      if (e.key === "ArrowRight") next = active + 1;
-      else if (e.key === "ArrowLeft") next = active - 1;
-      else if (e.key === "Home") next = 0;
-      else if (e.key === "End") next = tabs.length - 1;
-      if (next === null) return;
-      e.preventDefault();
-      stopAuto();
-      select(next, true);
+    // Swipe the card left/right on phones.
+    var tx = null, ty = null;
+    card.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; stop(); }, { passive: true });
+    card.addEventListener("touchend", function (e) {
+      if (tx === null) return;
+      var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) pick(cur + (dx < 0 ? 1 : -1), false);
+      tx = ty = null;
     });
-    roles.addEventListener("focusin", stopAuto);
-    roles.addEventListener("pointerdown", stopAuto);
-
-    // Swipe left/right on the panels (vertical scrolling is left alone).
-    var viewport = roles.querySelector(".role-viewport"), sx = null, sy = null;
-    viewport.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; stopAuto(); }, { passive: true });
-    viewport.addEventListener("touchend", function (e) {
-      if (sx === null) return;
-      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) select(active + (dx < 0 ? 1 : -1), false);
-      sx = sy = null;
-    });
-
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver(function (entries) {
-        inView = entries[0].isIntersecting;
-        if (inView) runAuto(); else pauseAuto();
-      }, { threshold: 0.4 }).observe(roles);
+      new IntersectionObserver(function (en) {
+        idSeen = en[0].isIntersecting;
+        if (idSeen) play(); else { clearInterval(idAuto); idAuto = null; }
+      }, { threshold: 0.4 }).observe(idBox);
     }
-    document.addEventListener("visibilitychange", function () { if (document.hidden) pauseAuto(); else runAuto(); });
-
-    select(0, false);
+    document.addEventListener("visibilitychange", function () { if (document.hidden) { clearInterval(idAuto); idAuto = null; } else play(); });
+    pick(0, false);
   }
-
   // ----- Store buttons: not live yet -----
   document.querySelectorAll('.store-btn[aria-disabled="true"]').forEach(function (a) {
     a.addEventListener("click", function (e) { e.preventDefault(); });
