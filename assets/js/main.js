@@ -159,6 +159,8 @@
     });
     var paint = function (i) {
       faces.forEach(function (f, k) { f.classList.toggle("is-active", k === i); });
+      // The card takes the role's colour (players blue, parents green, coaches violet, clubs navy, women pink).
+      card.setAttribute("data-role", faces[i].id.replace("id-", ""));
     };
     var pick = function (i, focus) {
       i = (i + idTabs.length) % idTabs.length;

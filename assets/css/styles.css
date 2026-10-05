@@ -478,12 +478,20 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 .id-stage { display: flex; justify-content: center; padding: 8px 0 24px; }
 .id-card {
   position: relative; width: min(340px, 100%); border-radius: 28px; padding: 26px 22px 18px;
-  background:
-    radial-gradient(420px 220px at 100% 0%, rgba(255, 255, 255, .18), transparent 60%),
-    linear-gradient(160deg, var(--court) 0%, var(--court-deep) 75%, #082F86 100%);
-  box-shadow: 0 28px 60px rgba(11, 63, 168, .28), 0 6px 16px rgba(15, 27, 51, .10), inset 0 0 0 1px rgba(255, 255, 255, .16);
+  /* One colour per role (set by data-role); the light and the depth are layered on top, so the colour change cross-fades. */
+  --card: var(--court); --glow: rgba(21, 101, 255, .30);
+  background-color: var(--card);
+  background-image:
+    radial-gradient(420px 240px at 100% 0%, rgba(255, 255, 255, .22), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, .04) 0%, rgba(4, 10, 30, .28) 60%, rgba(4, 10, 30, .5) 100%);
+  box-shadow: 0 28px 60px var(--glow), 0 6px 16px rgba(15, 27, 51, .10), inset 0 0 0 1px rgba(255, 255, 255, .16);
   color: var(--white); display: grid; gap: 16px;
+  transition: background-color .7s ease, box-shadow .7s ease;
 }
+.id-card[data-role="parents"] { --card: #0E9F6E; --glow: rgba(14, 159, 110, .28); }
+.id-card[data-role="coaches"] { --card: #6D4AE8; --glow: rgba(109, 74, 232, .30); }
+.id-card[data-role="clubs"]   { --card: #1F3A6E; --glow: rgba(15, 27, 51, .32); }
+.id-card[data-role="women"]   { --card: #E0457B; --glow: rgba(224, 69, 123, .30); }
 /* the lanyard slot of a badge */
 .id-card::before {
   content: ""; position: absolute; top: 12px; left: 50%; width: 56px; height: 7px; margin-left: -28px;
@@ -522,10 +530,30 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 .id-code { margin: 16px 0 0; font-size: .74rem; letter-spacing: .14em; color: rgba(255, 255, 255, .7); }
 .id-code b { color: var(--white); font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: .1em; }
 .id-bottom { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255, 255, 255, .2); padding-top: 14px; }
-.id-brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 900; letter-spacing: .04em; font-size: 1rem; }
+.id-brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 900; letter-spacing: .04em; font-size: 1rem; white-space: nowrap; }
 .id-brand span { color: var(--ball); }
 .id-sports { margin-left: auto; font-size: .64rem; font-weight: 800; letter-spacing: .14em; color: rgba(255, 255, 255, .7); text-align: right; }
-@media (prefers-reduced-motion: reduce) { .js .id-face, .js .id-face.is-active { transition: none; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js .id-face, .js .id-face.is-active, .id-card { transition: none; transform: none; } }
+/* Phones: smaller pills, a compact card, no chip. */
+@media (max-width: 599px) {
+  .id-tab { padding: 7px 12px; font-size: .84rem; gap: 6px; border-width: 1.5px; }
+  .id-tab svg { width: 15px; height: 15px; }
+  .id-stage { padding: 0 0 12px; }
+  .id-card { padding: 22px 18px 14px; gap: 12px; border-radius: 24px; }
+  .id-card::before { top: 10px; width: 48px; height: 6px; margin-left: -24px; }
+  .id-chip { display: none; }
+  .id-logo { width: 38px; }
+  .id-role { font-size: 1.85rem; margin-bottom: 6px; }
+  .id-line { font-size: .93rem; margin-bottom: 10px; }
+  .id-perks { gap: 7px; }
+  .id-perks li { font-size: .88rem; gap: 8px; }
+  .id-perks svg { flex-basis: 20px; width: 20px; height: 20px; padding: 4px; }
+  .id-code { margin-top: 10px; font-size: .68rem; }
+  .id-bottom { padding-top: 10px; }
+  .id-brand { font-size: .86rem; }
+  .id-sports { font-size: .58rem; letter-spacing: .1em; }
+  .everything-inner { gap: 20px; }
+}
 
 .all-line {
   margin: 36px auto 0; width: fit-content; max-width: 100%; text-align: center;
