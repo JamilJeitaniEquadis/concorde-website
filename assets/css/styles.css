@@ -452,23 +452,60 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 /* the Players section is white too: a thin line keeps the two apart */
 .everything + .section--white { padding-top: 0; }
 .everything + .section--white > .container { border-top: 1px solid var(--line); padding-top: 64px; }
-.all-grid { list-style: none; display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
-.all-card {
-  display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start;
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
-  padding: 16px;
+/* Role tabs. Without JS: tabs hidden, panels stacked. With JS (.js on <html>): panels sit on a sliding track. */
+.roles { max-width: 920px; margin: 0 auto; }
+.role-tabs { display: none; }
+.js .role-tabs {
+  display: flex; gap: 8px; width: fit-content; max-width: 100%; margin: 0 auto 20px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 6px;
 }
-.all-card .ic {
-  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+.js .role-tabs::-webkit-scrollbar { display: none; }
+.role-tab {
+  flex: 0 0 auto; font: inherit; font-weight: 700; font-size: .95rem; line-height: 1;
+  padding: 11px 18px; border-radius: var(--r-pill); cursor: pointer;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+@media (hover: hover) { .role-tab:hover { border-color: var(--court); color: var(--court); } }
+.role-tab[aria-selected="true"] { background: var(--court); border-color: var(--court); color: var(--white); }
+.role-tab--women { color: var(--women); border-color: var(--women-line); background: var(--women-soft); }
+@media (hover: hover) { .role-tab--women:hover { border-color: var(--women); color: var(--women); } }
+.role-tab--women[aria-selected="true"] { background: var(--women); border-color: var(--women); color: var(--white); }
+.role-tab:focus-visible { border-radius: var(--r-pill); outline-offset: 2px; }
+.role-tab--women:focus-visible { outline-color: var(--women); }
+
+.role-track { display: grid; gap: 12px; }
+.js .role-viewport { overflow: hidden; border-radius: var(--r-lg); }
+.js .role-track { display: flex; gap: 0; transition: transform .4s ease; }
+.js .role-panel { flex: 0 0 100%; min-width: 0; }
+.js .role-title { display: none; } /* the selected tab already names the panel */
+
+.role-panel {
+  display: grid; gap: 16px; align-content: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 24px 20px;
+}
+.role-panel:focus-visible { outline-offset: -3px; border-radius: var(--r-lg); }
+.role-orb {
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
   background: var(--court-soft); color: var(--court);
 }
-.all-card .ic svg { width: 22px; height: 22px; }
-.all-card h3 { font-size: 1.02rem; font-weight: 700; margin: 2px 0 2px; }
-.all-card p { color: var(--muted); font-size: .92rem; line-height: 1.5; margin: 0; }
-.all-card--women { background: var(--women-soft); border-color: var(--women-line); }
-.all-card--women .ic { background: var(--women); color: var(--white); }
-.all-card--women h3 { color: #A3204F; }
-.all-card--women p { color: #6E3550; }
+.role-orb svg { width: 28px; height: 28px; }
+.role-title { font-size: 1.05rem; font-weight: 800; margin: 0 0 4px; }
+.role-line { font-weight: 700; font-size: 1.1rem; line-height: 1.35; color: var(--ink); margin: 0 0 16px; }
+.role-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.role-list li { display: flex; align-items: center; gap: 12px; font-size: .97rem; color: var(--ink); }
+.role-list svg {
+  flex: 0 0 auto; width: 34px; height: 34px; padding: 8px; border-radius: 50%;
+  background: var(--white); color: var(--court); box-shadow: var(--shadow-sm);
+}
+.role-panel--women { background: var(--women-soft); border-color: var(--women-line); }
+.role-panel--women .role-orb { background: var(--women); color: var(--white); }
+.role-panel--women .role-list svg { color: var(--women); }
+.role-panel--women .role-title { color: #A3204F; }
+@media (prefers-reduced-motion: reduce) {
+  .js .role-track, .role-tab { transition: none; }
+}
 .all-line {
   margin: 28px auto 0; width: fit-content; max-width: 100%; text-align: center;
   background: var(--ink); color: var(--white); border-radius: var(--r-md); padding: 14px 22px;
@@ -477,13 +514,18 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 }
 .all-line span { color: var(--ball); margin: 0 .2em; }
 @media (min-width: 600px) {
-  .all-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .all-line { border-radius: var(--r-pill); padding: 14px 28px; }
+}
+@media (min-width: 760px) {
+  .js .role-tabs { margin-bottom: 28px; }
+  .role-panel { grid-template-columns: 180px minmax(0, 1fr); gap: 32px; align-items: center; padding: 40px 44px; }
+  .role-orb { width: 140px; height: 140px; justify-self: center; }
+  .role-orb svg { width: 64px; height: 64px; }
+  .role-line { font-size: 1.3rem; margin-bottom: 22px; }
+  .role-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
 }
 @media (min-width: 960px) {
   .everything { padding: 64px 0 72px; }
-  .all-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-  .all-card { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 22px 20px; }
   .all-line { margin-top: 36px; }
 }
 

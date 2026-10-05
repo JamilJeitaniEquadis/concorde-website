@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700..900&family=Inter:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261005">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261006">
   <script>document.documentElement.classList.add("js");</script>
   <!-- CONTACT EMAIL PLACEHOLDER: no public email yet. When ready, add it to the footer "Contact" list, e.g. hello@yourdomain -->
 </head>
@@ -194,58 +194,87 @@
         <div class="section-head section-head--center reveal">
           <p class="eyebrow">The app</p>
           <h2 id="everything-title" class="display h2">Everything. <span class="accent">One app.</span></h2>
-          <p class="lead">Players, ladders, coaches, kids and clubs. Tennis and padel, all in Concorde Sport.</p>
+          <p class="lead">Pick who you are.</p>
         </div>
-        <ul class="all-grid">
-          <li class="all-card reveal">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-users"/></svg></span>
-            <div><h3>Swipe to find partners</h3><p>Players at your level nearby. Match and the chat opens.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d1">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-flag"/></svg></span>
-            <div><h3>Open games</h3><p>Join a game in one tap, or host your own and fill the spots.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d2">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-court"/></svg></span>
-            <div><h3>Book courts</h3><p>Book a court at partner clubs, straight from the app.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d3">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-repeat"/></svg></span>
-            <div><h3>Play again</h3><p>Rematch the partners you've already played with.</p></div>
-          </li>
-          <li class="all-card reveal">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-trophy"/></svg></span>
-            <div><h3>Friends' ladders</h3><p>Invite friends with a code. Both players confirm every score.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d1">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-tap"/></svg></span>
-            <div><h3>For coaches</h3><p>Kids groups, private lessons, attendance in one tap. Paid per session.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d2">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-kids"/></svg></span>
-            <div><h3>Kids academy</h3><p>Groups, schedule and coach notes. Ask for a group or a private lesson.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d3">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-calendar"/></svg></span>
-            <div><h3>For clubs</h3><p>Calendar, opening hours, closed courts and court requests in one tap.</p></div>
-          </li>
-          <li class="all-card all-card--women reveal">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-women"/></svg></span>
-            <div><h3>Women only</h3><p>Only women see you, swipe you or message you. Plus women-only games and ladders.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d1">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-wallet"/></svg></span>
-            <div><h3>Pay in the app</h3><p>Whish or Visa/Mastercard. Fully automated.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d2">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-star"/></svg></span>
-            <div><h3>Free for players</h3><p>Free at launch. Parents pay only the session price.</p></div>
-          </li>
-          <li class="all-card reveal reveal-d3">
-            <span class="ic"><svg aria-hidden="true"><use href="#i-globe"/></svg></span>
-            <div><h3>Play anywhere</h3><p>Starting in Lebanon, open to everyone. Matching by distance.</p></div>
-          </li>
-        </ul>
+        <!-- Role tabs: with JS the panels slide on a track; without JS they are simply stacked. -->
+        <div class="roles reveal" data-roles>
+          <div class="role-tabs" data-role-tabs>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-players" id="role-tab-players">Players</button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-parents" id="role-tab-parents">Parents</button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-coaches" id="role-tab-coaches">Coaches</button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-clubs" id="role-tab-clubs">Clubs</button>
+            <button type="button" class="role-tab role-tab--women" data-role-tab aria-controls="role-women" id="role-tab-women">Women only</button>
+          </div>
+          <div class="role-viewport">
+            <div class="role-track" data-role-track>
+              <div class="role-panel" id="role-players" data-role-panel>
+                <span class="role-orb" aria-hidden="true"><svg><use href="#i-users"/></svg></span>
+                <div class="role-body">
+                  <h3 class="role-title">Players</h3>
+                  <p class="role-line">Find a game at your level, any day.</p>
+                  <ul class="role-list">
+                    <li><svg aria-hidden="true"><use href="#i-users"/></svg>Swipe to find partners nearby</li>
+                    <li><svg aria-hidden="true"><use href="#i-flag"/></svg>Join or host open games</li>
+                    <li><svg aria-hidden="true"><use href="#i-court"/></svg>Book courts at clubs</li>
+                    <li><svg aria-hidden="true"><use href="#i-trophy"/></svg>Friends' ladders, scores confirmed</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="role-panel" id="role-parents" data-role-panel>
+                <span class="role-orb" aria-hidden="true"><svg><use href="#i-kids"/></svg></span>
+                <div class="role-body">
+                  <h3 class="role-title">Parents</h3>
+                  <p class="role-line">Your kids' training, all on your phone.</p>
+                  <ul class="role-list">
+                    <li><svg aria-hidden="true"><use href="#i-calendar"/></svg>Kids' groups and schedule</li>
+                    <li><svg aria-hidden="true"><use href="#i-note"/></svg>Notes from the coach</li>
+                    <li><svg aria-hidden="true"><use href="#i-msg"/></svg>Ask a coach for a lesson</li>
+                    <li><svg aria-hidden="true"><use href="#i-wallet"/></svg>Pay per session in the app</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="role-panel" id="role-coaches" data-role-panel>
+                <span class="role-orb" aria-hidden="true"><svg><use href="#i-tap"/></svg></span>
+                <div class="role-body">
+                  <h3 class="role-title">Coaches</h3>
+                  <p class="role-line">Run your groups and lessons from one place.</p>
+                  <ul class="role-list">
+                    <li><svg aria-hidden="true"><use href="#i-users"/></svg>Your groups and private lessons</li>
+                    <li><svg aria-hidden="true"><use href="#i-tap"/></svg>Attendance in one tap</li>
+                    <li><svg aria-hidden="true"><use href="#i-msg"/></svg>Requests from parents in chat</li>
+                    <li><svg aria-hidden="true"><use href="#i-wallet"/></svg>Paid per session, in the app</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="role-panel" id="role-clubs" data-role-panel>
+                <span class="role-orb" aria-hidden="true"><svg><use href="#i-court"/></svg></span>
+                <div class="role-body">
+                  <h3 class="role-title">Clubs</h3>
+                  <p class="role-line">Your courts and programs, from one screen.</p>
+                  <ul class="role-list">
+                    <li><svg aria-hidden="true"><use href="#i-tap"/></svg>Court requests in one tap</li>
+                    <li><svg aria-hidden="true"><use href="#i-calendar"/></svg>Calendar and opening hours</li>
+                    <li><svg aria-hidden="true"><use href="#i-kids"/></svg>Kids programs and coaches</li>
+                    <li><svg aria-hidden="true"><use href="#i-wallet"/></svg>One monthly plan, no commission</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="role-panel role-panel--women" id="role-women" data-role-panel>
+                <span class="role-orb" aria-hidden="true"><svg><use href="#i-women"/></svg></span>
+                <div class="role-body">
+                  <h3 class="role-title">Women only</h3>
+                  <p class="role-line">A space where only women can find you.</p>
+                  <ul class="role-list">
+                    <li><svg aria-hidden="true"><use href="#i-msg"/></svg>Only women see and message you</li>
+                    <li><svg aria-hidden="true"><use href="#i-trophy"/></svg>Women-only games and ladders</li>
+                    <li><svg aria-hidden="true"><use href="#i-clock"/></svg>Ladies' padel nights</li>
+                    <li><svg aria-hidden="true"><use href="#i-tap"/></svg>On or off in one tap</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <p class="all-line reveal">All in one app <span aria-hidden="true">·</span> No consoles <span aria-hidden="true">·</span> No setup</p>
       </div>
     </section>
@@ -573,6 +602,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261005" defer></script>
+  <script src="assets/js/main.js?v=20261006" defer></script>
 </body>
 </html>
