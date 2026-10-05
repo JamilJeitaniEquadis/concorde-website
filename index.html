@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,700..900&family=Inter:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261006">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261007">
   <script>document.documentElement.classList.add("js");</script>
   <!-- CONTACT EMAIL PLACEHOLDER: no public email yet. When ready, add it to the footer "Contact" list, e.g. hello@yourdomain -->
 </head>
@@ -192,22 +192,22 @@
     <section class="section section--white everything" id="everything" aria-labelledby="everything-title">
       <div class="container">
         <div class="section-head section-head--center reveal">
-          <p class="eyebrow">The app</p>
-          <h2 id="everything-title" class="display h2">Everything. <span class="accent">One app.</span></h2>
-          <p class="lead">Pick who you are.</p>
+          <p class="eyebrow">Everything. One app.</p>
+          <h2 id="everything-title" class="display h2">Not just <span class="accent">for players.</span></h2>
+          <p class="lead">One app that speaks to everyone on the court. Tap who you are.</p>
         </div>
         <!-- Role tabs: with JS the panels slide on a track; without JS they are simply stacked. -->
         <div class="roles reveal" data-roles>
           <div class="role-tabs" data-role-tabs>
-            <button type="button" class="role-tab" data-role-tab aria-controls="role-players" id="role-tab-players">Players</button>
-            <button type="button" class="role-tab" data-role-tab aria-controls="role-parents" id="role-tab-parents">Parents</button>
-            <button type="button" class="role-tab" data-role-tab aria-controls="role-coaches" id="role-tab-coaches">Coaches</button>
-            <button type="button" class="role-tab" data-role-tab aria-controls="role-clubs" id="role-tab-clubs">Clubs</button>
-            <button type="button" class="role-tab role-tab--women" data-role-tab aria-controls="role-women" id="role-tab-women">Women only</button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-players" id="role-tab-players" style="--rc:#1565FF;--rc-soft:#E7F0FF"><span class="role-ico" aria-hidden="true"><svg><use href="#i-users"/></svg></span><span class="role-name">Players</span></button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-parents" id="role-tab-parents" style="--rc:#12B76A;--rc-soft:#E3F8EE"><span class="role-ico" aria-hidden="true"><svg><use href="#i-kids"/></svg></span><span class="role-name">Parents</span></button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-coaches" id="role-tab-coaches" style="--rc:#7A5AF8;--rc-soft:#F0ECFE"><span class="role-ico" aria-hidden="true"><svg><use href="#i-tap"/></svg></span><span class="role-name">Coaches</span></button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-clubs" id="role-tab-clubs" style="--rc:#E0732E;--rc-soft:#FDEFE6"><span class="role-ico" aria-hidden="true"><svg><use href="#i-court"/></svg></span><span class="role-name">Clubs</span></button>
+            <button type="button" class="role-tab" data-role-tab aria-controls="role-women" id="role-tab-women" style="--rc:#E0457B;--rc-soft:#FDECF3"><span class="role-ico" aria-hidden="true"><svg><use href="#i-women"/></svg></span><span class="role-name">Women only</span></button>
           </div>
           <div class="role-viewport">
             <div class="role-track" data-role-track>
-              <div class="role-panel" id="role-players" data-role-panel>
+              <div class="role-panel" id="role-players" data-role-panel style="--rc:#1565FF;--rc-soft:#E7F0FF">
                 <span class="role-orb" aria-hidden="true"><svg><use href="#i-users"/></svg></span>
                 <div class="role-body">
                   <h3 class="role-title">Players</h3>
@@ -220,7 +220,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="role-panel" id="role-parents" data-role-panel>
+              <div class="role-panel" id="role-parents" data-role-panel style="--rc:#12B76A;--rc-soft:#E3F8EE">
                 <span class="role-orb" aria-hidden="true"><svg><use href="#i-kids"/></svg></span>
                 <div class="role-body">
                   <h3 class="role-title">Parents</h3>
@@ -233,7 +233,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="role-panel" id="role-coaches" data-role-panel>
+              <div class="role-panel" id="role-coaches" data-role-panel style="--rc:#7A5AF8;--rc-soft:#F0ECFE">
                 <span class="role-orb" aria-hidden="true"><svg><use href="#i-tap"/></svg></span>
                 <div class="role-body">
                   <h3 class="role-title">Coaches</h3>
@@ -246,7 +246,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="role-panel" id="role-clubs" data-role-panel>
+              <div class="role-panel" id="role-clubs" data-role-panel style="--rc:#E0732E;--rc-soft:#FDEFE6">
                 <span class="role-orb" aria-hidden="true"><svg><use href="#i-court"/></svg></span>
                 <div class="role-body">
                   <h3 class="role-title">Clubs</h3>
@@ -259,7 +259,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="role-panel role-panel--women" id="role-women" data-role-panel>
+              <div class="role-panel" id="role-women" data-role-panel style="--rc:#E0457B;--rc-soft:#FDECF3">
                 <span class="role-orb" aria-hidden="true"><svg><use href="#i-women"/></svg></span>
                 <div class="role-body">
                   <h3 class="role-title">Women only</h3>
@@ -602,6 +602,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=20261006" defer></script>
+  <script src="assets/js/main.js?v=20261007" defer></script>
 </body>
 </html>
