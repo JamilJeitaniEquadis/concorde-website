@@ -157,8 +157,20 @@
       faces[k].setAttribute("role", "tabpanel");
       faces[k].setAttribute("aria-labelledby", t.id);
     });
+    // Dots under the card (tap one to jump), and the swipe hint on touch screens.
+    var dotBox = idBox.querySelector("[data-id-dots]"), hint = idBox.querySelector("[data-id-hint]"), dots = [];
+    faces.forEach(function (f, k) {
+      var d = document.createElement("button");
+      d.type = "button"; d.className = "id-dot"; d.tabIndex = -1;
+      d.setAttribute("aria-label", idTabs[k].textContent.trim());
+      d.addEventListener("click", function () { stop(); pick(k, false); });
+      dotBox.appendChild(d); dots.push(d);
+    });
+    var hintDone = function () { if (hint) hint.classList.add("is-done"); try { localStorage.setItem("cs-swiped", "1"); } catch (e) {} };
+    try { if (localStorage.getItem("cs-swiped") && hint) hint.style.display = "none"; } catch (e) {}
     var paint = function (i) {
       faces.forEach(function (f, k) { f.classList.toggle("is-active", k === i); });
+      dots.forEach(function (d, k) { d.setAttribute("aria-current", String(k === i)); });
       // The card takes the role's colour (players blue, parents green, coaches violet, clubs navy, women pink).
       card.setAttribute("data-role", faces[i].id.replace("id-", ""));
     };
@@ -172,7 +184,11 @@
         t.setAttribute("aria-selected", String(on));
         t.tabIndex = on ? 0 : -1;
       });
-      if (focus) idTabs[i].focus();
+      // Keep the chosen pill visible in the swipeable row (without scrolling the page).
+      var tb = idTabs[i], left = tb.getBoundingClientRect().left - idTabList.getBoundingClientRect().left + idTabList.scrollLeft, right = left + tb.offsetWidth;
+      if (left < idTabList.scrollLeft + 8) idTabList.scrollTo({ left: Math.max(0, left - 16), behavior: still ? "auto" : "smooth" });
+      else if (right > idTabList.scrollLeft + idTabList.clientWidth - 8) idTabList.scrollTo({ left: right - idTabList.clientWidth + 16, behavior: still ? "auto" : "smooth" });
+      if (focus) tb.focus();
       // The card stays still; the new role fades in where the old one was (CSS).
       paint(i);
     };
@@ -187,14 +203,25 @@
       if (n === null) return;
       e.preventDefault(); stop(); pick(n, true);
     });
-    // Swipe the card left/right on phones.
-    var tx = null, ty = null;
-    card.addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; stop(); }, { passive: true });
+    // Swipe the card left/right on phones: it follows the finger a little, then springs back with the next role.
+    var tx = null, ty = null, sideways = null;
+    card.addEventListener("touchstart", function (e) {
+      tx = e.touches[0].clientX; ty = e.touches[0].clientY; sideways = null; stop();
+      card.classList.remove("is-snapping");
+    }, { passive: true });
+    card.addEventListener("touchmove", function (e) {
+      if (tx === null) return;
+      var dx = e.touches[0].clientX - tx, dy = e.touches[0].clientY - ty;
+      if (sideways === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) sideways = Math.abs(dx) > Math.abs(dy);
+      if (sideways && !still) card.style.transform = "translateX(" + dx * 0.35 + "px) rotate(" + dx * 0.02 + "deg)";
+    }, { passive: true });
     card.addEventListener("touchend", function (e) {
       if (tx === null) return;
       var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) pick(cur + (dx < 0 ? 1 : -1), false);
-      tx = ty = null;
+      card.classList.add("is-snapping");
+      card.style.transform = "";
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { pick(cur + (dx < 0 ? 1 : -1), false); hintDone(); }
+      tx = ty = sideways = null;
     });
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) {

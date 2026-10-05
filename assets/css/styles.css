@@ -461,8 +461,12 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
   display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
   background: var(--white); color: var(--ink); border: 1.5px solid var(--line);
   border-radius: var(--r-pill); padding: 10px 16px; font-weight: 800; font-size: .95rem;
-  transition: background .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease;
+  transition: background .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent; /* no grey/blue box on tap: we show our own press */
+  -webkit-user-select: none; user-select: none; outline: none;
 }
+.id-tab:active { transform: scale(.95); }
+.id-tab:focus-visible { outline: 2px solid var(--court); outline-offset: 3px; }
 .id-tab svg { width: 18px; height: 18px; color: var(--court); transition: color .25s ease; }
 @media (hover: hover) { .id-tab:hover { border-color: var(--court); } }
 .id-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--white); box-shadow: var(--shadow-md); }
@@ -475,7 +479,7 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 }
 
 /* The card: portrait badge on phones, landscape card from tablets up. It never moves; only its content changes. */
-.id-stage { display: flex; justify-content: center; padding: 8px 0 24px; }
+.id-stage { display: flex; flex-direction: column; align-items: center; padding: 8px 0 24px; }
 .id-card {
   position: relative; width: min(340px, 100%); border-radius: 28px; padding: 26px 22px 18px;
   /* One colour per role (set by data-role); the light and the depth are layered on top, so the colour change cross-fades. */
@@ -532,8 +536,27 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
 .id-bottom { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(255, 255, 255, .2); padding-top: 14px; }
 .id-brand { font-family: var(--font-display); font-stretch: 112%; font-weight: 900; letter-spacing: .04em; font-size: 1rem; white-space: nowrap; }
 .id-brand span { color: var(--ball); }
-.id-sports { margin-left: auto; font-size: .64rem; font-weight: 800; letter-spacing: .14em; color: rgba(255, 255, 255, .7); text-align: right; }
-@media (prefers-reduced-motion: reduce) { .js .id-face, .js .id-face.is-active, .id-card { transition: none; transform: none; } }
+.id-sports { margin-left: auto; white-space: nowrap; font-size: .64rem; font-weight: 800; letter-spacing: .14em; color: rgba(255, 255, 255, .7); text-align: right; }
+/* Dots under the card: where you are, and a hint that the card swipes. */
+.id-card { -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
+.id-nav { display: none; }
+.js .id-nav { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 14px; }
+.id-dots { display: flex; gap: 8px; }
+.id-dot {
+  width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: var(--line); cursor: pointer;
+  transition: width .35s cubic-bezier(.2, .8, .2, 1), background .35s ease; -webkit-tap-highlight-color: transparent;
+}
+.id-dot[aria-current="true"] { width: 26px; background: var(--ink); }
+.id-hint { display: none; align-items: center; gap: 8px; font-size: .82rem; font-weight: 700; color: var(--muted); transition: opacity .4s ease; }
+.id-hint svg { width: 16px; height: 16px; }
+.id-hint .hint-hand { display: inline-block; animation: id-swipe 1.8s ease-in-out infinite; }
+@keyframes id-swipe { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-10px); } }
+@media (hover: none) { .id-hint { display: inline-flex; } }
+.id-hint.is-done { opacity: 0; }
+/* The card follows your finger a little while you swipe. */
+.id-card { will-change: transform; }
+.id-card.is-snapping { transition: background-color .7s ease, box-shadow .7s ease, transform .45s cubic-bezier(.2, .8, .2, 1); }
+@media (prefers-reduced-motion: reduce) { .js .id-face, .js .id-face.is-active, .id-card { transition: none; transform: none; } .id-hint .hint-hand { animation: none; } }
 /* Phones: smaller pills, a compact card, no chip. */
 @media (max-width: 599px) {
   .id-tab { padding: 7px 12px; font-size: .84rem; gap: 6px; border-width: 1.5px; }
@@ -551,7 +574,7 @@ html:not(.js) .rot-item:not(:first-child), html:not(.js) .shot:not(:first-child)
   .id-code { margin-top: 10px; font-size: .68rem; }
   .id-bottom { padding-top: 10px; }
   .id-brand { font-size: .86rem; }
-  .id-sports { font-size: .58rem; letter-spacing: .1em; }
+  .id-sports { font-size: .5rem; letter-spacing: .08em; }
   .everything-inner { gap: 20px; }
 }
 
